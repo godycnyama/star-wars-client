@@ -4,7 +4,8 @@ export type SearchStateParameters = {
     total?: number;
     pageSize?: number;
     numberOfPages?: number;
-    currentPage?: number,
+    currentPage: number | undefined,
     nextPage?: number,
+    nextPageUrl?: string | null,
     previousPage?: number,
 }

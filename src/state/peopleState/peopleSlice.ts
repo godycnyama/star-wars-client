@@ -18,6 +18,7 @@ export const initialState = {
     numberOfPages: 0,
     currentPage: 1,
     nextPage: undefined,
+    nextPageUrl: null,
     previousPage: undefined
 
   },
@@ -48,6 +49,9 @@ const peopleSlice = createSlice({
     setNextPage: (state, { payload }: PayloadAction<number | undefined>) => {
       state.searchStateParameters.nextPage = payload
     },
+    setNextPageUrl: (state, { payload }: PayloadAction<string | null>) => {
+      state.searchStateParameters.nextPageUrl = payload
+    },
     setPreviousPage: (state, { payload }: PayloadAction<number | undefined>) => {
       state.searchStateParameters.previousPage = payload
     },
@@ -65,6 +69,7 @@ export const {
   setPageSize,
   setCurrentPage,
   setNextPage,
+  setNextPageUrl,
   setPreviousPage,
   getPeopleSuccess,
 } = peopleSlice.actions

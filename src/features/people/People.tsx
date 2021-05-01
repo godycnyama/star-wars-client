@@ -7,8 +7,8 @@ import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Chip from "@material-ui/core/Chip";
 import ListIcon from "@material-ui/icons/List";
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -48,6 +48,7 @@ import {
   setPageSize,
   setCurrentPage,
   setNextPage,
+  setNextPageUrl,
   setPreviousPage,
   getPeopleSuccess,
   peopleSelector,
@@ -115,7 +116,8 @@ const People = () => {
       total,
       numberOfPages,
       previousPage,
-      nextPage
+      nextPage,
+      nextPageUrl
     },
   } = useAppSelector(peopleSelector);
   const {
@@ -145,12 +147,15 @@ const People = () => {
       }
       dispatch(setTotal(data.getPeople.count));
       dispatch(setNumberOfPages(Math.ceil(data.getPeople.count / 10)));
+      //dispatch(setCurrentPage(currentPage + 1));
 
       if (data.getPeople.next !== null) {
         let nextPageArray: string[] = data.getPeople.next.split("=");
         let nextPage: string = nextPageArray[nextPageArray.length - 1];
         dispatch(setNextPage(parseInt(nextPage)));
       }
+
+      dispatch(setNextPageUrl(data.getPeople.next));
 
       if (data.getPeople.next === null) {
         dispatch(setNextPage(undefined));
@@ -233,9 +238,13 @@ const People = () => {
     searchPeople();
   };
 
-  const getPage = (page: number | undefined) => {
+  const getPage = (page: number | undefined): void => {
     dispatch(setCurrentPage(page));
-    searchPeople();
+    getPeople({
+      variables: {
+        page: page,
+      },
+    });
   };
 
   return (
@@ -327,17 +336,26 @@ const People = () => {
                 />
               )}
               {watchSearchBy === "All" && numberOfPages !== 0 && (
-                <ButtonGroup
-                  size="small"
-                  aria-label="small outlined button group"
-                >
-                  <Button disabled={previousPage === undefined} onClick={() => getPage(previousPage)}>
+                <div style={{marginTop: -5}}>
+                  <IconButton
+                    color="primary"
+                    aria-label="previous page"
+                    component="span"
+                    disabled={previousPage === undefined }
+                    onClick={() => getPage(previousPage)}
+                  >
                     <ArrowBackIosIcon />
-                  </Button>
-                  <Button disabled={nextPage === undefined} onClick={() => getPage(nextPage)}>
+                  </IconButton>
+                  <IconButton
+                    color="primary"
+                    aria-label="previous page"
+                    component="span"
+                    disabled={nextPage === undefined}
+                    onClick={() => getPage(nextPage)}
+                  >
                     <ArrowForwardIosIcon />
-                  </Button>
-                </ButtonGroup>
+                  </IconButton>
+                </div>
               )}
             </div>
             <Table>
