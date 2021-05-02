@@ -1,4 +1,14 @@
+# Star Wars (Frontend)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+
+## Description
+
+This Star Wars app provides a way to retrieve detailed information about characters of the Star Wars Universe. It lists all Star Wars characters and details of each individual character. One can search for a particular character using the character's name.It is based on React, Typescript, Redux Toolkit, MaterialUI and Apollo Client 3 for communicating with a graphql api.
+
+## Setup/Installation
+
+Make sure you have Node 12, Typescript 3.4+, Yarn and Git installed on you computer.To install the app, run the following command: git clone https://github.com/godycnyama/premcal-frontend.git in the command line. cd to premcal-frontend root and install Node packages by running the following command: npm install.
 
 ## Available Scripts
 
