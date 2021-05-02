@@ -8,7 +8,7 @@ This Star Wars app provides a way to retrieve detailed information about charact
 
 ## Setup/Installation
 
-Make sure you have Node 12, Typescript 3.4+, Yarn and Git installed on you computer.To install the app, run the following command: git clone https://github.com/godycnyama/premcal-frontend.git in the command line. cd to premcal-frontend root and install Node packages by running the following command: npm install.
+Make sure you have Node 12, Typescript 3.4+, Yarn and Git installed on you computer.To install the app, run the following command: git clone https://github.com/godycnyama/star-wars-client.git in the command line. cd to star-wars-client root and install Node packages by running the following command: yarn install.
 
 ## Available Scripts
 
